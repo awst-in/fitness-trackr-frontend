@@ -1,7 +1,6 @@
-export const API_URL = 'https://fitnesstrac-kr.herokuapp.com/api/';
+export const API_URL = 'https://fitnesstrac-kr.herokuapp.com/api';
 
 export const callApi = async ({ url, method, token, body }) => {
-  //console.log('callApi: ', { url, method, token, body });
   try {
     const options = {
       method: method ? method.toUpperCase() : 'GET',
@@ -17,7 +16,7 @@ export const callApi = async ({ url, method, token, body }) => {
     console.log('Call API Options: ', options);
     const response = await fetch(API_URL + url, options);
     const data = await response.json();
-    console.log('data: ', data);
+    // console.log('data: ', data);
     if (data.error) throw data.error;
     return data;
   } catch (error) {

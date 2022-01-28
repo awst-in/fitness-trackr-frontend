@@ -1,29 +1,76 @@
 import React, { useState, useEffect } from 'react';
 import { callApi } from '../api';
+import { Navigation, Routines, AccountForm, Profile, SingleRoutine } from '.';
+import { BrowserRouter as Route, Switch } from 'react-router-dom';
 
 const App = () => {
+  const [token, setToken] = useState('');
   const [routines, setRoutines] = useState([]);
   const [activities, setActivities] = useState([]);
+  const [userData, setUserData] = useState({});
 
+  const fetchUserData = async (token) => {
+    const data = await callApi({
+      url: '/users/me',
+      token,
+    });
+    console.log('USERDATA: ', data);
+    return data;
+  };
+  const fetchRoutines = async () => {
+    const routines = await callApi({ url: '/routines' });
+    console.log('ROUTINES: ', routines);
+    return routines;
+  };
   useEffect(() => {
     const fetchData = async () => {
-      const allRoutines = await callApi({ url: '/routines' });
-      setRoutines(allRoutines);
+      const routines = await fetchRoutines();
+      setRoutines(routines);
+      // const allActivities = await callApi({ url: '/activities' });
+      // setActivities(allActivities);
+      if (!token) {
+        setToken(localStorage.getItem('token'));
+        return;
+      }
+      const data = await fetchUserData(token);
+      if (data) {
+        setUserData(data);
+      }
     };
-
     fetchData();
-  }, []);
+  }, [token]);
+
   return (
-    <div>
-      <h1>Hello</h1>
-      {routines && routines.length
-        ? routines.map(({ id, name, goal, creatorName }) => (
-            <div key={id}>
-              {name} createdBy: {creatorName}
-            </div>
-          ))
-        : ''}
-    </div>
+    <>
+      <Navigation token={token} />
+      <Switch>
+        <Route exact path='/'>
+          FITNESS TRAC.KR HOMEPAGE
+        </Route>
+        <Route path='/register'>
+          <AccountForm action='register' setToken={setToken} setUserData={setUserData} />
+        </Route>
+        <Route path='/login'>
+          {!token ? (
+            <AccountForm action='login' setToken={setToken} setUserData={setUserData} />
+          ) : (
+            <>
+              {/* <div>You are already logged in!</div> */}
+              <br />
+            </>
+          )}
+        </Route>
+        <Route exact path='/profile'>
+          <Profile token={token} userData={userData} />
+        </Route>
+        <Route exact path='/routines'>
+          <Routines routines={routines} />
+        </Route>
+        <Route path='/routines/:routineId'>
+          <SingleRoutine routines={routines} token={token} userData={userData} />
+        </Route>
+      </Switch>
+    </>
   );
 };
 
