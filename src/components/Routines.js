@@ -31,26 +31,23 @@ const Routines = ({ routines }) => {
   const routinesToDisplay = routines.filter((routine) => routineMatches(routine, searchTerm));
   return (
     <>
-      <div style={styles.searchContainer}>
-        <h2>Routines</h2>
-        <input
-          style={styles.searchInput}
-          type='text'
-          placeholder='search for routines'
-          value={searchTerm}
-          onChange={(event) => {
-            setSearchTerm(event.target.value);
-          }}
-        ></input>
+      <div className='outer-container'>
+        <div className='search-bar-container'>
+          <h2>Routines</h2>
+          <input
+            className='search-bar'
+            type='text'
+            placeholder='search for routines'
+            value={searchTerm}
+            onChange={(event) => {
+              setSearchTerm(event.target.value);
+            }}
+          ></input>
+        </div>
+        {routinesToDisplay.length
+          ? routinesToDisplay.map((routine) => <RoutinesCard key={routine.id} routine={routine} />)
+          : ''}
       </div>
-      {routinesToDisplay.length
-        ? routinesToDisplay.map(({ id, name, goal, creatorName }) => (
-            <RoutinesCard key={id} name={name} goal={goal} creatorName={creatorName} />
-            // <div key={id}>
-            //   {name} createdBy: {creatorName}
-            // </div>
-          ))
-        : ''}
     </>
   );
 };

@@ -9,8 +9,8 @@ const AccountForm = ({ action, setToken }) => {
   const isLogin = action === 'login';
   console.log('ACTION: ', action);
   const title = isLogin ? 'Login' : 'Register';
-  console.log('ISLOGIN: ', isLogin);
-  const oppositeTitle = isLogin ? 'Register' : 'Login';
+  // console.log('ISLOGIN: ', isLogin);
+  const oppositeTitle = isLogin ? 'New User?' : 'Already have an account?';
   const oppositeAction = isLogin ? 'register' : 'login';
   console.log('OPPOSITE: ', oppositeAction);
   const history = useHistory();
@@ -29,7 +29,7 @@ const AccountForm = ({ action, setToken }) => {
       setUsername('');
       setPassword('');
       setToken(token);
-      history.push('/');
+      history.push('/profile');
     }
   };
 
@@ -50,7 +50,7 @@ const AccountForm = ({ action, setToken }) => {
             placeholder='password'
             value={password}
             onChange={(event) => setPassword(event.target.value)}
-          ></input>{' '}
+          ></input>
           <br />
           <Button variant='secondary' type='submit'>
             {title}

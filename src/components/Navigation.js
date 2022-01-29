@@ -18,7 +18,7 @@ const Navigation = ({ token }) => {
   };
   return (
     <>
-      <Navbar bg='secondary' variant='secondary' sticky='top'>
+      <Navbar className='nav-bar' sticky='top'>
         <Navbar.Brand>Fitness Trac.kr</Navbar.Brand>
         <Nav className='me-auto'>
           <NavItem componentclass='span'>
@@ -26,13 +26,25 @@ const Navigation = ({ token }) => {
               Home
             </Link>
           </NavItem>
+          <NavItem componentclass='span'>
+            <Link to='/routines' style={linkStyle}>
+              Routines
+            </Link>
+          </NavItem>
+          <NavItem componentclass='span'>
+            <Link to='/activities' style={linkStyle}>
+              Activities
+            </Link>
+          </NavItem>
           <br />
           {!token ? (
-            <NavItem componentclass='span'>
-              <Link to='/login' style={linkStyle}>
-                Login
-              </Link>
-            </NavItem>
+            <>
+              <NavItem componentclass='span'>
+                <Link to='/login' style={linkStyle}>
+                  Login
+                </Link>
+              </NavItem>
+            </>
           ) : (
             <>
               <NavItem componentclass='span'>
@@ -40,14 +52,14 @@ const Navigation = ({ token }) => {
                   Profile
                 </Link>
               </NavItem>
-              <NavItem componentclass='span'>
-                <Link to='/routines' style={linkStyle}>
-                  Routines
-                </Link>
-              </NavItem>
 
               <br />
-
+              <NavItem componentclass='span'>
+                <Link to='/myroutines' style={linkStyle}>
+                  My Routines
+                </Link>
+              </NavItem>
+              <br />
               <NavItem componentclass='span'>
                 <Link to='/' style={linkStyle} onClick={handleClick}>
                   Logout

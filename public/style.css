@@ -1,15 +1,88 @@
 * {
   padding: 0;
 }
+body {
+  display: flex;
+  justify-content: center;
+  /* padding-top: 4rem; */
+  margin: auto;
+  height: 100vh;
+  background-color: lightgray !important;
+}
 
+.nav-bar {
+  background-color: rgba(126, 13, 31, 0.479);
+  width: 100vw;
+}
+
+.outer-container {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  box-shadow: 1px 4px 4px gray;
+  background-color: white;
+  height: 85vh;
+  width: 97vw;
+}
 .card {
   padding: 5px;
   margin: 10px;
 }
+
+.routine-card-container {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-items: center;
+  width: 78vw;
+  padding: 2rem 0.5rem 2rem 0;
+  height: fit-content;
+  background-color: white;
+  border-bottom: 1px solid lightgray;
+}
+
+.details-container {
+  flex-direction: column;
+  line-height: 60%;
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+}
+.search-bar-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 78vw;
+  top: 15px;
+  border-radius: 10px 10px 0 0;
+  background-color: white;
+  align-items: center;
+}
+
+.search-bar {
+  display: flex;
+  position: relative;
+  padding: 0.5rem 0;
+  z-index: 1;
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 10px 10px 0 0;
+  border-bottom: 1.5px solid lightgray;
+  outline: none;
+  width: 97%;
+  background: white;
+  font-size: 110%;
+  text-align: start;
+}
+
+.search-bar:focus {
+  border-bottom: 1.5px solid black;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
-
 /* Track */
 ::-webkit-scrollbar-track {
   background: #f1f1f1;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import { callApi } from '../api';
-import { Navigation, Routines, AccountForm, Profile, SingleRoutine } from '.';
-import { BrowserRouter as Route, Switch } from 'react-router-dom';
+import { AccountForm, Navigation, Routines, Profile, SingleRoutine, MyRoutines, Activities } from './';
 
 const App = () => {
   const [token, setToken] = useState('');
@@ -60,20 +60,26 @@ const App = () => {
           <AccountForm action='register' setToken={setToken} setUserData={setUserData} />
         </Route>
         <Route path='/login'>
-          {/* {!token ? ( */}
-          <AccountForm action='login' setToken={setToken} setUserData={setUserData} />
-          {/* ) : (
+          {!token ? (
+            <AccountForm action='login' setToken={setToken} setUserData={setUserData} />
+          ) : (
             <>
               <div>You are already logged in!</div>
               <br />
             </>
-          )} */}
+          )}
         </Route>
         <Route exact path='/routines'>
-          <Routines routines={routines} />
+          <Routines routines={routines} activities={activities} />
+        </Route>
+        <Route exact path='/activities'>
+          <Activities activities={activities} />
         </Route>
         <Route path='/routines/:routineId'>
           <SingleRoutine routines={routines} token={token} userData={userData} />
+        </Route>
+        <Route exact path='/myroutines'>
+          <MyRoutines routines={routines} />
         </Route>
       </Switch>
     </>
