@@ -7,9 +7,12 @@ const AccountForm = ({ action, setToken }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const isLogin = action === 'login';
+  console.log('ACTION: ', action);
   const title = isLogin ? 'Login' : 'Register';
-  const oppositeTitle = isLogin ? 'New user?' : 'Already have an account?';
+  console.log('ISLOGIN: ', isLogin);
+  const oppositeTitle = isLogin ? 'Register' : 'Login';
   const oppositeAction = isLogin ? 'register' : 'login';
+  console.log('OPPOSITE: ', oppositeAction);
   const history = useHistory();
 
   const handleSubmit = async (event) => {
@@ -26,7 +29,7 @@ const AccountForm = ({ action, setToken }) => {
       setUsername('');
       setPassword('');
       setToken(token);
-      history.push('/profile');
+      history.push('/');
     }
   };
 

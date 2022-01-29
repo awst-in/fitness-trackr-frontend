@@ -22,12 +22,18 @@ const App = () => {
     console.log('ROUTINES: ', routines);
     return routines;
   };
+  const fetchActivities = async () => {
+    const activities = await callApi({ url: '/activities' });
+    console.log('ACTIVITIES: ', activities);
+    return activities;
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const routines = await fetchRoutines();
       setRoutines(routines);
-      // const allActivities = await callApi({ url: '/activities' });
-      // setActivities(allActivities);
+      const activities = await fetchActivities();
+      setActivities(activities);
       if (!token) {
         setToken(localStorage.getItem('token'));
         return;
@@ -47,21 +53,21 @@ const App = () => {
         <Route exact path='/'>
           FITNESS TRAC.KR HOMEPAGE
         </Route>
+        <Route exact path='/profile'>
+          <Profile token={token} userData={userData} />
+        </Route>
         <Route path='/register'>
           <AccountForm action='register' setToken={setToken} setUserData={setUserData} />
         </Route>
         <Route path='/login'>
-          {!token ? (
-            <AccountForm action='login' setToken={setToken} setUserData={setUserData} />
-          ) : (
+          {/* {!token ? ( */}
+          <AccountForm action='login' setToken={setToken} setUserData={setUserData} />
+          {/* ) : (
             <>
-              {/* <div>You are already logged in!</div> */}
+              <div>You are already logged in!</div>
               <br />
             </>
-          )}
-        </Route>
-        <Route exact path='/profile'>
-          <Profile token={token} userData={userData} />
+          )} */}
         </Route>
         <Route exact path='/routines'>
           <Routines routines={routines} />

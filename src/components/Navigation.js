@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 const linkStyle = {
@@ -21,38 +21,38 @@ const Navigation = ({ token }) => {
       <Navbar bg='secondary' variant='secondary' sticky='top'>
         <Navbar.Brand>Fitness Trac.kr</Navbar.Brand>
         <Nav className='me-auto'>
-          <Nav.Link to='/'>
+          <NavItem componentclass='span'>
             <Link to='/' style={linkStyle}>
               Home
             </Link>
-          </Nav.Link>
+          </NavItem>
           <br />
           {!token ? (
-            <Nav.Link>
+            <NavItem componentclass='span'>
               <Link to='/login' style={linkStyle}>
                 Login
               </Link>
-            </Nav.Link>
+            </NavItem>
           ) : (
             <>
-              <Nav.Link>
+              <NavItem componentclass='span'>
                 <Link to='/profile' style={linkStyle}>
                   Profile
                 </Link>
-              </Nav.Link>
-              <Nav.Link>
+              </NavItem>
+              <NavItem componentclass='span'>
                 <Link to='/routines' style={linkStyle}>
                   Routines
                 </Link>
-              </Nav.Link>
+              </NavItem>
 
               <br />
 
-              <Nav.Link>
+              <NavItem componentclass='span'>
                 <Link to='/' style={linkStyle} onClick={handleClick}>
                   Logout
                 </Link>
-              </Nav.Link>
+              </NavItem>
             </>
           )}
         </Nav>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import RoutinesCard from './RoutinesCard';
 
 const styles = {
   searchContainer: {
@@ -44,9 +45,10 @@ const Routines = ({ routines }) => {
       </div>
       {routinesToDisplay.length
         ? routinesToDisplay.map(({ id, name, goal, creatorName }) => (
-            <div key={id}>
-              {name} createdBy: {creatorName}
-            </div>
+            <RoutinesCard key={id} name={name} goal={goal} creatorName={creatorName} />
+            // <div key={id}>
+            //   {name} createdBy: {creatorName}
+            // </div>
           ))
         : ''}
     </>
