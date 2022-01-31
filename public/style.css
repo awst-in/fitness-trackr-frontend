@@ -24,11 +24,7 @@ body {
   box-shadow: 1px 4px 4px gray;
   background-color: white;
   height: 85vh;
-  width: 97vw;
-}
-.card {
-  padding: 5px;
-  margin: 10px;
+  width: auto;
 }
 
 .routine-card-container {
@@ -36,7 +32,7 @@ body {
   position: relative;
   flex-direction: row;
   justify-items: center;
-  width: 78vw;
+  width: 99vw;
   padding: 2rem 0.5rem 2rem 0;
   height: fit-content;
   background-color: white;
@@ -45,17 +41,17 @@ body {
 
 .details-container {
   flex-direction: column;
-  line-height: 60%;
   padding-left: 1rem;
   padding-top: 0.5rem;
 }
+
 .search-bar-container {
   display: flex;
   flex-direction: column;
   position: absolute;
-  width: 78vw;
-  top: 15px;
-  border-radius: 10px 10px 0 0;
+  width: 99vw;
+  /* top: 55px; */
+  /* border-radius: 10px 10px 0 0; */
   background-color: white;
   align-items: center;
 }
@@ -67,7 +63,7 @@ body {
   z-index: 1;
   font-size: 1.3rem;
   border: none;
-  border-radius: 10px 10px 0 0;
+  /* border-radius: 10px 10px 0 0; */
   border-bottom: 1.5px solid lightgray;
   outline: none;
   width: 97%;
@@ -79,10 +75,10 @@ body {
 .search-bar:focus {
   border-bottom: 1.5px solid black;
 }
-
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 0px;
 }
+
 /* Track */
 ::-webkit-scrollbar-track {
   background: #f1f1f1;

@@ -16,7 +16,7 @@ const styles = {
 const routineMatches = (routine, searchTerm) => {
   const searchTermLower = searchTerm.toLowerCase();
   const { name, goal, creatorName } = routine;
-
+  // console.log('--------routine: ', routine);
   const toMatch = [name, goal, creatorName];
 
   for (const field of toMatch) {
@@ -33,7 +33,6 @@ const Routines = ({ routines }) => {
     <>
       <div className='outer-container'>
         <div className='search-bar-container'>
-          <h2>Routines</h2>
           <input
             className='search-bar'
             type='text'

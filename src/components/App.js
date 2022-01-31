@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { callApi } from '../api';
-import { AccountForm, Navigation, Routines, Profile, SingleRoutine, MyRoutines, Activities } from './';
+import {
+  AccountForm,
+  Navigation,
+  Routines,
+  Profile,
+  SingleRoutine,
+  MyRoutines,
+  Activities,
+  RoutineForm,
+} from './';
 
 const App = () => {
   const [token, setToken] = useState('');
@@ -14,17 +23,17 @@ const App = () => {
       url: '/users/me',
       token,
     });
-    console.log('USERDATA: ', data);
+    // console.log('USERDATA: ', data);
     return data;
   };
   const fetchRoutines = async () => {
     const routines = await callApi({ url: '/routines' });
-    console.log('ROUTINES: ', routines);
+    // console.log('ROUTINES: ', routines);
     return routines;
   };
   const fetchActivities = async () => {
     const activities = await callApi({ url: '/activities' });
-    console.log('ACTIVITIES: ', activities);
+    // console.log('ACTIVITIES: ', activities);
     return activities;
   };
 
@@ -72,14 +81,28 @@ const App = () => {
         <Route exact path='/routines'>
           <Routines routines={routines} activities={activities} />
         </Route>
-        <Route exact path='/activities'>
-          <Activities activities={activities} />
+        <Route path='/routines/new'>
+          {token ? (
+            <RoutineForm token={token} setRoutines={setRoutines} routines={routines} action='add' />
+          ) : (
+            'You must be logged in to add a new routine!'
+          )}
         </Route>
-        <Route path='/routines/:routineId'>
+        <Route path='/routines/:routineId/edit'>
+          {token ? (
+            <RoutineForm token={token} setRoutines={setRoutines} routines={routines} action='edit' />
+          ) : (
+            ''
+          )}
+        </Route>
+        <Route exact path='/routines/:routineId'>
           <SingleRoutine routines={routines} token={token} userData={userData} />
         </Route>
         <Route exact path='/myroutines'>
-          <MyRoutines routines={routines} />
+          <MyRoutines routines={routines} userData={userData} />
+        </Route>
+        <Route exact path='/activities'>
+          <Activities activities={activities} />
         </Route>
       </Switch>
     </>

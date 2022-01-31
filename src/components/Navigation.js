@@ -61,6 +61,12 @@ const Navigation = ({ token }) => {
               </NavItem>
               <br />
               <NavItem componentclass='span'>
+                <Link to='/routines/new' style={linkStyle}>
+                  Add Routine
+                </Link>
+              </NavItem>
+              <br />
+              <NavItem componentclass='span'>
                 <Link to='/' style={linkStyle} onClick={handleClick}>
                   Logout
                 </Link>
